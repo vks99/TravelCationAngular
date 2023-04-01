@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     ContactusComponent,
     FooterComponent,
-    PaymentComponent
+    PaymentComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
