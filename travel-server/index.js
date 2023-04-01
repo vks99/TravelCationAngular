@@ -42,10 +42,11 @@ mongoose.connect("mongodb+srv://vikasguptha99:Vik240398@cluster0.0rsfijt.mongodb
 
 // routes
 app.post("/contactus",async(req, res)=>{
+	console.log("inside server");
 	const formData = req.body;
 	console.log(formData);
 	await contactus.create(formData);
-	await res.send("true");
+	await res.send(true);
 });
 
 

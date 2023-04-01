@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { IContactus, ContactusserviceService } from '../services/contactusservice.service';
 
 @Component({
   selector: 'app-contactus',
@@ -8,28 +8,35 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./contactus.component.css']
 })
 export class ContactusComponent {
+  contactusdetails: IContactus[] = [];
+  successMessage="Form Submitted Succesfull";
+  isOpen=false;
 
-  
-  // formData: any = {};
-  // successMessage: string = "";
-  // isOpen: boolean = false;
+  constructor(private contactusservice:ContactusserviceService){}
 
-  // constructor(private http: HttpClient) { }
+  closemessage(){
+    this.isOpen=false;
+  }
 
-  // onSubmit(form: NgForm) {
-  //   this.http.post('http://localhost:8000/contactus', this.formData).subscribe((response: any) => {
-  //       if (response === true) {
-  //         this.successMessage = "Form submitted successfully!";
-  //         this.isOpen = true;
-  //       }
-  //       else {
-  //         this.successMessage = "Form Submission Failed: Invalid data entered. Please check the information you have entered and try again.";
-  //         this.isOpen = true;
-  //       }
-  //       console.log(response);
-  //     }, (error: any) => {
-  //       console.error(error);
-  //     });
-  // }
+  onSubmit(form: NgForm) {
+    this.contactusdetails.push({
+      fullName: form.value.fullName,
+      email: form.value.email,
+      subject: form.value.subject,
+      message: form.value.message
+    });
+    console.log(this.contactusdetails);
+    form.reset();
+
+    this.contactusservice.postContactus(this.contactusdetails).subscribe((data)=>{
+      if(data==true){
+        this.isOpen=true;
+      }
+      else{
+        this.isOpen=false;
+      }
+    })
+
+  }
 
 }
