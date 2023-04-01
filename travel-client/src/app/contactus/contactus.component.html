@@ -2,7 +2,7 @@
 <div class="contact-form">
     <div class="container-fluid p-5">
       <div class="contact-form shadow rounded mt-5 contact-form">
-        <div class="row">
+        <div class="row shadow">
           <div class="col-md-4 form-left-side p-5 text-white">
             <h2 class="mb-4">Let's Get in touch</h2>
             <p>We're for any suggestion or just to have a chat</p>
@@ -27,33 +27,33 @@
           </div>
           <div class="col-md-8 form-right-side p-5">
             <h2 class="mb-4">Get in touch</h2>
-            <!-- (submit)="onSubmit()" -->
-            <form  class="row g-3"> 
+            <form  class="row g-3" (ngSubmit)="onSubmit(myform)" #myform="ngForm"> 
               <div class="col-md-6">
                 <label for="FullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" name="fullName" placeholder="Name" required>
+                <input type="text" class="form-control" name="fullName" placeholder="Name" ngModel required #name="ngModel">
               </div>
               <div class="col-md-6">
                 <label for="Email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email"  placeholder="Email" required>
+                <input type="email" class="form-control" name="email"  placeholder="Email" ngModel required #name="ngModel">
               </div>
               <div class="col-12">
                 <label for="inputSubject" class="form-label">Subject</label>
-                <input type="text" class="form-control" name="subject"  placeholder="Subject">
+                <input type="text" class="form-control" name="subject"  placeholder="Subject" ngModel #name="ngModel">
               </div>
               <div class="col-12">
                 <label for="inputMessage" class="form-label">Message</label>
-                <textarea class="form-control" rows="6" name="message"  placeholder="Message" required></textarea>
+                <textarea class="form-control" rows="6" name="message"  placeholder="Message" ngModel required #name="ngModel"></textarea>
               </div>
               <div class="col-12">
                 <button class="button" type="submit">Send Message</button>
               </div>
-              <!-- <div *ngIf="isOpen" class="alert alert-success" role="alert">
+              <div *ngIf="isOpen" class="alert alert-success" role="alert">
                 {{successMessage}}
-                <button type="button" class="btn-close" ></button>
-              </div> -->
+                <button type="button" class="btn-close" (click)="closemessage()"></button>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+</div>
